@@ -1,36 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/guest/Home.vue'
 import store from "../store";
-import Register from "../views/auth/Register.vue";
-import Login from "../views/auth/Login.vue";
+import ClientRoutes from './clientRoutes'
+import AdminRoutes from './adminRoutes'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
-    meta: {requiresAuth: false}
+    name: 'Store',
+    component: () => import('../layout/BaseLayout.vue'),
+    redirect: '/home',
+    meta: {requiresAuth: false},
+    children: ClientRoutes
+     
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/guest/About.vue')
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: Register,
-    meta: { guest: true },
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
-    meta: { guest: true },
-  },
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../layout/AdminLayout.vue'),
+    redirect: '/homeAdmin',
+    meta: {requiresAuth: true},
+    children: AdminRoutes
+  }
+  
 ]
 
 const router = new VueRouter({
