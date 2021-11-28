@@ -3,22 +3,29 @@
     <div>
       <v-form ref="form" v-model="valid" lazy-validation>
 
-        <v-text-field v-model="form.username" :counter="10" :rules="nameRules" label="Nome de usuário" required ></v-text-field>
+        <v-text-field v-model="form.username" :counter="10" :rules="usernameRules" label="Nome de usuário" required ></v-text-field>
 
-        <v-text-field v-model="form. full_name" :rules="nameRules" label="Nome completo" required ></v-text-field>
+        <v-text-field v-model="form.name" :rules="nameRules" label="Nome completo" required ></v-text-field>
 
         <v-text-field v-model="form.email" :rules="emailRules" label="E-mail" required ></v-text-field>
 
         <v-text-field v-model="form.document" :rules="documentRules" label="CPF ou CNPJ" required ></v-text-field>
 
-        <v-text-field v-model="form.password" :rules="passwordRules" label="Senha" required ></v-text-field>
+        <v-text-field v-model="form.password"
+            :append-icon="show ? 'fas fa-eye' : 'fas fa-eye-slash'"
+            :rules="[rules.required, rules.min]"
+            :type="show ? 'text' : 'password'"
+            name="input-10-1"
+            label="Senha"
+            hint="minímo 8 caracteres"
+            counter
+            @click:append = "show = !show"
+          ></v-text-field>
 
-        <v-text-field v-model="form.confirmPassword" :rules="confirmPasswordRules" label="Confirme a senha" required ></v-text-field>
-        <!--
-          <v-select v-model="select" :items="items" :rules="[(v) => !!v || 'Item is required']" label="Item" required ></v-select>
+        <v-text-field v-model="form.password" label="Senha" required ></v-text-field>
+
+        <v-text-field v-model="form.confirmPassword" label="Confirme a senha" required ></v-text-field>
         
-        <v-checkbox v-model="checkbox" :rules="[(v) => !!v || 'You must agree to continue!']" label="Do you agree?" required ></v-checkbox>
-        -->
         <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate" >
           Validate
         </v-btn>
@@ -27,39 +34,7 @@
 
         <v-btn color="warning" @click="resetValidation"> Reset Validation </v-btn>
 
-      </v-form>
-
-      <form @submit.prevent="submit">
-        <div>
-          <label for="username">Username:</label>
-          <input type="text" name="username" v-model="form.username" />
-        </div>
-        <div>
-          <label for="full_name">Full Name:</label>
-          <input type="text" name="full_name" v-model="form.name" />
-        </div>
-        <div>
-          <label for="email">Email:</label>
-          <input type="email" name="email" v-model="form.email" />
-        </div>
-        <div>
-          <label for="document">document:</label>
-          <input type="text" name="document" v-model="form.document" />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" v-model="form.password" />
-        </div>
-        <div>
-          <label for="confirmPassword"> confirmPassword :</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            v-model="form.confirmPassword"
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      </v-form>    
     </div>
     <p v-if="showError" id="error">Username already exists</p>
   </div>
@@ -81,7 +56,31 @@ export default {
         document: "",
         confirmPassword: "",
       },
+      show: false,
+      password: 'Password',
+        rules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 8 || 'Minimo 8 caracteres',
+          emailMatch: () => (`The email and password you entered don't match`),
+        },
       showError: false,
+      valid: true,
+      usernameRules: [
+        v => !!v || 'username is required',
+        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      nameRules: [
+        v => !!v || 'Name is required',
+        //v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      documentRules: [
+        v => !!v || 'document is required',
+        v => (v && v.length <= 10) || 'documento must be less than 10 characters',
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
     };
   },
   methods: {
@@ -98,6 +97,15 @@ export default {
         console.log(error);
       }
     },
+    validate () {
+        this.$refs.form.validate()
+      },
+      reset () {
+        this.$refs.form.reset()
+      },
+      resetValidation () {
+        this.$refs.form.resetValidation()
+      },
   },
 };
 </script>
