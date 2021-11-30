@@ -2,7 +2,7 @@
     <div v-if="isAuthenticated">
         <v-btn @click="sair()" text>
           <span class="mr-2">sair </span>
-          <v-icon>mdi-open-in-new</v-icon>
+          <v-icon>fas fa-sign-out-alt</v-icon>
         </v-btn>
       </div>
       <div v-else>

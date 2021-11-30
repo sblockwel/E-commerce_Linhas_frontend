@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="submit">
 
         <v-text-field v-model="form.username" :counter="10" :rules="usernameRules" label="Nome de usuário" required ></v-text-field>
 
@@ -26,15 +26,15 @@
 
         <v-text-field v-model="form.confirmPassword" label="Confirme a senha" required ></v-text-field>
         
-        <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate" >
-          Validate
-        </v-btn>
+        <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate" > Validate </v-btn>
 
         <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
 
         <v-btn color="warning" @click="resetValidation"> Reset Validation </v-btn>
 
-      </v-form>    
+        <v-btn type="submit" color="success" class="mr-4"> Cadastrar-se </v-btn>
+
+      </v-form>   
     </div>
     <p v-if="showError" id="error">Username already exists</p>
   </div>
