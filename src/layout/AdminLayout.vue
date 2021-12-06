@@ -1,36 +1,73 @@
-<template>    
-    <div>
-        <teleport to="head">
-        </teleport>
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/admin"> <fa-icon icon="store"/> Linhas Blumenau</a>
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <login-display/>
-        </header>
+<template>
+  <v-app>
+    <v-app-bar app dark>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+            Linhas Blumenau
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            tudo em linhas para você
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-spacer></v-spacer>
+      <login-display />
+    </v-app-bar>
 
-        <nav-menu></nav-menu>
+    <v-navigation-drawer v-model="drawer" dark absolute bottom>
+      <v-divider></v-divider>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <router-view></router-view>
-        </main>
-    </div>
+      <v-list dense nav>
+        <v-list-item v-for="item in items" :to="item.route" :key="item.name" link>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <main :class="mainClass()">
+      <router-view></router-view>
+    </main>
+  </v-app>
 </template>
 <script>
-import LoginDisplay from '../components/LoginDisplay.vue'
-    import NavMenu from './NavMenu.vue'
-    export default {
-        name: "AdminLayout",
-        components: {
-            NavMenu
-        },
-        
-                LoginDisplay
+import LoginDisplay from "../components/LoginDisplay.vue";
+export default {
+  name: "AdminLayout",
+  components: {
+    LoginDisplay,
+  },
+  data() {
+    return {
+        drawer: false,
+      items: [
+        {name: "ProductCreate", title: "Cadastro de produtos", icon: "fas fa-tags", route: "/product"},
+        {name: "ProductList", title: "Lista de produtos", icon: "fas fa-list",  route: "/products"},
+        {name: "CategoryCreate", title: "Cadastro de categorias", icon: "fas fa-tags",  route: "/category"},
+        {name: "CategoryList", title: "Lista de categorias", icon: "fas fa-list",  route: "/categories"},
+      ],
+    };
+  },
+  methods:{
+    mainClass(){
+        return this.drawer ? "body-main drawer-collapsed" : "body-main"
     }
+  },
+};
 </script>
 <style scoped>
-   
+.body-main{
+    padding: 10px;
+}
+.drawer-collapsed{
+    margin-left: 256px;
+
+}
 </style>

@@ -1,18 +1,27 @@
 <template>
-  <div class="center">
+   <div class="center">
+    <v-alert type="error" v-if="showError">
+      {{erro}}
+    </v-alert>
     <div>
-      <form @submit.prevent="submit">
-        <div>
-          <label for="username">Username:</label>
-          <input type="text" name="username" v-model="form.username" />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" v-model="form.password" />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      <p v-if="showError" id="error">Username or Password is incorrect</p>
+      <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="submit">
+
+        <v-text-field v-model="form.username" :counter="10" :rules="usernameRules" label="Nome de usuário" required ></v-text-field>
+
+        <v-text-field v-model="form.password"
+          :append-icon="show ? 'fas fa-eye' : 'fas fa-eye-slash'"
+          :rules="[passwordRules.required, passwordRules.min]"
+          :type="show ? 'text' : 'password'"
+          name="input-10-1"
+          label="Senha"
+          hint="minímo 8 caracteres"
+          counter
+          @click:append = "show = !show"
+        ></v-text-field>
+
+        <v-btn type="submit" color="success" class="mr-4"> Logar </v-btn>
+
+      </v-form>   
     </div>
   </div>
 </template>
@@ -27,8 +36,19 @@ export default {
       form: {
         username: "",
         password: "",
+      },      
+      show: false,
+      showError: false,
+      valid: true,
+      passwordRules: {
+        required: value => !!value || 'Senha é obrigatória!',
+        min: v => v.length >= 8 || 'Minimo 8 caracteres',
       },
-      showError: false
+      usernameRules: [
+        v => !!v || 'Usuário é obrigatório!',
+        v => (v && v.length <= 15) || 'O nome de usuário deve ter menos de 15 caracteres',
+      ],
+      erro: "",
     };
   },
   methods: {
@@ -40,6 +60,7 @@ export default {
           this.showError = false
       } catch (error) {
         this.showError = true
+        this.erro = error.message
       }
     },
   },
@@ -49,34 +70,9 @@ export default {
 <style scoped>
 .center {
   margin: auto;
-  width: 60%;
+  width: 20%;
   text-align: center;
   padding: 10px;
 }
-* {
-  box-sizing: border-box;
-}
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-button[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 20px;
-  cursor: pointer;
-  border-radius: 30px;
-}
-button[type="submit"]:hover {
-  background-color: #45a049;
-}
-input {
-  margin: 5px;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
-  padding: 10px;
-  border-radius: 30px;
-}
-#error {
-  color: red;
-}
+
 </style>
