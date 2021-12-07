@@ -52,6 +52,7 @@ export default {
         {name: "ProductList", title: "Lista de produtos", icon: "fas fa-list",  route: "/products"},
         {name: "CategoryCreate", title: "Cadastro de categorias", icon: "fas fa-tags",  route: "/category"},
         {name: "CategoryList", title: "Lista de categorias", icon: "fas fa-list",  route: "/categories"},
+        {name: "AdminCreate", title: "Cadastro de admin", icon: "fas fa-people",  route: "/adiminRegister"},
       ],
     };
   },

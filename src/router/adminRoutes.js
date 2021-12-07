@@ -34,6 +34,12 @@ const routes = [
       name: 'CategoryList',
       component: () => import('../views/admin/CategoryList.vue'),
     },
+    {
+      path: '/adiminRegister',
+      name: 'AdminRegister',
+      component: () => import('../views/admin/AdminRegister.vue'),
+    },
+
   ]
 
 export default routes
