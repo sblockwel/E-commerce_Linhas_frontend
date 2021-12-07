@@ -40,7 +40,7 @@
 
         <v-select :items="categories" label="Categoria" dense></v-select>
 
-        <v-file-input accept="image/*" multiple counter label="File input"></v-file-input>
+        <v-file-input accept="image/*" counter label="File input"></v-file-input>
 
         <v-btn color="error" class="mr-4" @click="reset"> Limpar </v-btn>
 
