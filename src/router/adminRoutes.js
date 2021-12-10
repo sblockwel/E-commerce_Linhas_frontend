@@ -5,39 +5,44 @@ const routes = [
       component: () => import('../views/admin/Home.vue'),
     },
     {
-      path: '/product',
+      path: 'product',
       name: 'ProductCreate',
       component: () => import('../views/admin/ProductForm.vue'),
     },
     {
-      path: '/product/:id',
+      path: 'product/:id',
       name: 'ProductEdit',
       component: () => import('../views/admin/ProductForm.vue'),
     },
     {
-      path: '/products',
+      path: 'products',
       name: 'ProductList',
       component: () => import('../views/admin/ProductList.vue'),
     },
     {
-      path: '/category',
+      path: 'category',
       name: 'CategoryCreate',
       component: () => import('../views/admin/CategoryForm.vue'),
     },
     {
-      path: '/category/:id',
+      path: 'category/:id',
       name: 'CategoryEdit',
       component: () => import('../views/admin/ProductForm.vue'),
     },
     {
-      path: '/categories',
+      path: 'categories',
       name: 'CategoryList',
       component: () => import('../views/admin/CategoryList.vue'),
     },
     {
-      path: '/adiminRegister',
+      path: 'adminRegister',
       name: 'AdminRegister',
       component: () => import('../views/admin/AdminRegister.vue'),
+    },
+    {
+      path: 'orderPending',
+      name: 'OrderPending',
+      component: () => import('../views/admin/OrderList.vue'),
     },
 
   ]

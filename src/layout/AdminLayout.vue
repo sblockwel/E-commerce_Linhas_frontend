@@ -48,11 +48,12 @@ export default {
     return {
         drawer: false,
       items: [
-        {name: "ProductCreate", title: "Cadastro de produtos", icon: "fas fa-tags", route: "/product"},
-        {name: "ProductList", title: "Lista de produtos", icon: "fas fa-list",  route: "/products"},
-        {name: "CategoryCreate", title: "Cadastro de categorias", icon: "fas fa-tags",  route: "/category"},
-        {name: "CategoryList", title: "Lista de categorias", icon: "fas fa-list",  route: "/categories"},
-        {name: "AdminCreate", title: "Cadastro de admin", icon: "fas fa-people",  route: "/adiminRegister"},
+        {name: "ProductCreate", title: "Cadastro de produtos", icon: "fas fa-tags", route: "product"},
+        {name: "ProductList", title: "Lista de produtos", icon: "fas fa-list",  route: "products"},
+        {name: "CategoryCreate", title: "Cadastro de categorias", icon: "fas fa-tags",  route: "category"},
+        {name: "CategoryList", title: "Lista de categorias", icon: "fas fa-list",  route: "categories"},
+        {name: "AdminCreate", title: "Cadastro de admin", icon: "fas fa-users",  route: "adminRegister"},
+        {name: "OrderPending", title: "Lista de Pedidos pendentes", icon: "fas fa-clipboard-list",  route: "orderPending"},
       ],
     };
   },
