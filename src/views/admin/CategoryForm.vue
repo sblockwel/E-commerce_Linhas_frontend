@@ -55,5 +55,10 @@ export default {
 </script>
 
 <style>
-
+.center {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+}
 </style>

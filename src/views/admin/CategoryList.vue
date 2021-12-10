@@ -1,11 +1,16 @@
 <template>
   <div>
+    <div>
+      <v-btn  href="category" text> Cadastrar Novo </v-btn>
+    </div>
+    
     <v-data-table
       :headers="headers"
       :items="categories"
       :items-per-page="5"
       class="elevation-1"
     ></v-data-table>
+    
   </div>
 </template>
 
