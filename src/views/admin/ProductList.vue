@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div>
+      <v-btn href="product" text> Cadastrar Novo </v-btn>
+    </div>
+    
     <v-data-table
       :headers="headers"
       :items="products"
