@@ -1,9 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app dark>
       <div class="d-flex align-center">
         <v-img @click="goToHome()"
-          alt="Vuetify Logo"
           class="shrink mr-2 logo"
           contain
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"

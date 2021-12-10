@@ -59,7 +59,7 @@ const actions = {
   },
 
   async GetsUsers(){
-    let response = await axios.get("/peoples")
+    let response = await axios.get("/clients")
     if (response == null || response.status == 404) {
       return [] 
     }
