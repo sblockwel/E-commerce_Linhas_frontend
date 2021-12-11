@@ -15,7 +15,6 @@
         <v-btn type="submit" color="success" class="mr-4"> Cadastrar </v-btn>
       </v-form>
     </div>
-    <p v-if="showError" id="error">{{ erro }}</p>
   </div>
 </template>
 
@@ -35,7 +34,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["CreateAdmin"]),
+    ...mapActions(["CreateAdmin", "GetUsers"]),
     async submit() {
       try {
         if (this.form != null) {

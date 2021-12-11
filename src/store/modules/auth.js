@@ -58,8 +58,9 @@ const actions = {
     await commit("setToken", state.token)
   },
 
-  async GetsUsers(){
+  async GetUsers(){
     let response = await axios.get("/clients")
+    console.log(response)
     if (response == null || response.status == 404) {
       return [] 
     }

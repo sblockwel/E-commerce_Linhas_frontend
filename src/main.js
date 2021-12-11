@@ -19,7 +19,6 @@ axios.interceptors.response.use(undefined, function(error) {
   }
 });
 
-
 Vue.config.productionTip = false
 
 new Vue({
@@ -27,4 +26,5 @@ new Vue({
   router,
   vuetify,
   render: h => h(App)
-}).$mount('#app')
+})
+.$mount('#app')
