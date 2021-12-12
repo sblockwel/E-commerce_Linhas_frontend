@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <h1>Tela Descrição da Linha</h1>
+  <div class="compra">
+    <h1> Descrição compra</h1>
 
      <v-card-actions>
           <v-btn @click="goToVoltar()" flat color="orange">Voltar</v-btn>
