@@ -15,8 +15,8 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn flat color="orange">Comprar</v-btn>
-          <v-btn flat color="orange">Descrição</v-btn>
+          <v-btn text color="orange">Comprar</v-btn>
+          <v-btn text color="orange">Descrição</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>

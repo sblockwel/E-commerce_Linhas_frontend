@@ -16,7 +16,7 @@
         </v-card-title>
 
         <v-card-actions class="justify-center">
-          <v-btn @click="goToCompra()" flat color="orange">Produtos</v-btn>
+          <v-btn @click="goToCompra()" text color="orange">Produtos</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -36,7 +36,7 @@
         </v-card-title>
 
         <v-card-actions class="justify-center">
-          <v-btn @click="goToCompra()" flat color="orange">Produtos</v-btn>
+          <v-btn @click="goToCompra()" text color="orange">Produtos</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -56,7 +56,7 @@
         </v-card-title>
 
         <v-card-actions class="justify-center">
-          <v-btn  @click="goToCompra()" flat color="orange" >Produtos</v-btn>
+          <v-btn  @click="goToCompra()" text color="orange" >Produtos</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>

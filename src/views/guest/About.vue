@@ -3,7 +3,7 @@
     <h1>Tela Descrição da Linha</h1>
 
      <v-card-actions>
-          <v-btn @click="goToVoltar()" flat color="orange">Voltar</v-btn>
+          <v-btn @click="goToVoltar()" text color="orange">Voltar</v-btn>
         </v-card-actions>
   </div>
 </template>
