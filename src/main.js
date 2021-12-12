@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://localhost:8082/";
+axios.defaults.baseURL = "http://localhost:8080/";
 
 axios.interceptors.response.use(undefined, function(error) {
   if (error) {
@@ -20,7 +20,6 @@ axios.interceptors.response.use(undefined, function(error) {
   }
 });
 
-
 Vue.config.productionTip = false
 
 new Vue({
@@ -28,4 +27,5 @@ new Vue({
   router,
   vuetify,
   render: h => h(App)
-}).$mount('#app')
+})
+.$mount('#app')

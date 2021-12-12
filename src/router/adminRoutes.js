@@ -44,6 +44,16 @@ const routes = [
       name: 'OrderPending',
       component: () => import('../views/admin/OrderList.vue'),
     },
+    {
+      path: 'clientList',
+      name: 'ClientList',
+      component: () => import('../views/admin/ClientList.vue'),
+    },
+    {
+      path: 'adminList',
+      name: 'AdminList',
+      component: () => import('../views/admin/AdminList.vue'),
+    },
 
   ]
 
