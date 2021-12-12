@@ -5,6 +5,7 @@ import vuetify from './plugins/vuetify'
 import store from "./store";
 import axios from "axios";
 
+
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "http://localhost:8080/";
 
