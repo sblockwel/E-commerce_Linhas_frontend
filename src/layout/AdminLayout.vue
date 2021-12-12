@@ -39,12 +39,10 @@
 </template>
 <script>
 import LoginDisplay from "../components/LoginDisplay.vue";
-
 export default {
   name: "AdminLayout",
   components: {
     LoginDisplay,
-  
   },
   data() {
     return {

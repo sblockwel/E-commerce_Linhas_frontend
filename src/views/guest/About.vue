@@ -1,20 +1,5 @@
 <template>
   <div class="about">
-    <h1>Tela Descrição da Linha</h1>
-
-     <v-card-actions>
-          <v-btn @click="goToVoltar()" flat color="orange">Voltar</v-btn>
-        </v-card-actions>
+    <h1>This is an about page</h1>
   </div>
 </template>
-
-<script>
-  export default {
-    
-     methods: {
-    goToVoltar(){
-      this.$router.push({name: "Home"})
-    }
-  }
-  }
-</script>
