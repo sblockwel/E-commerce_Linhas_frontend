@@ -26,6 +26,16 @@ const routes = [
     component: () => import('../views/auth/Login.vue'),
     meta: { guest: true },
   },
+  {
+    path: "minhaConta",
+    name: "MyAccount",
+    component: () => import('../views/account/MyAccount.vue'),
+  }, 
+  {
+    path: "meusPedidos",
+    name: "MyOrders",
+    component: () => import('../views/account/MyOrders.vue'),
+  },
 ]
 
 export default routes

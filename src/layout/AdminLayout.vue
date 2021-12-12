@@ -55,7 +55,7 @@ export default {
         {name: "CategoryCreate", title: "Cadastro de categorias", icon: "fas fa-tags",  route: "/admin/category"},
         {name: "CategoryList", title: "Lista de categorias", icon: "fas fa-list",  route: "/admin/categories"},
         {name: "AdminCreate", title: "Cadastro de administrador", icon: "fas fa-users",  route: "/admin/adminRegister"},
-        {name: "OrderPending", title: "Lista de edidos pendentes", icon: "fas fa-clipboard-list",  route: "/admin/orderPending"},
+        {name: "OrderPending", title: "Lista de pedidos pendentes", icon: "fas fa-clipboard-list",  route: "/admin/orderPending"},
         {name: "ClientList", title: "Lista de clientes", icon: "fas fa-clipboard-list",  route: "/admin/clientList"},
         {name: "AdminList", title: "Lista de administardores", icon: "fas fa-clipboard-list",  route: "/admin/adminList"},
       ],

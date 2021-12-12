@@ -17,9 +17,9 @@
           @click="item.action"
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
-          
+
           <v-list-item-icon>
-              <v-icon> {{ item.icon }} </v-icon>
+            <v-icon> {{ item.icon }} </v-icon>
           </v-list-item-icon>
         </v-list-item>
       </v-list>
@@ -73,8 +73,19 @@ export default {
       }
       return pageAdmin;
     },
-    goToMyAccount() {},
-    goToMyOrders() {},
+    goToMyAccount() {
+      if (this.$router.currentRoute.path != "/minhaConta") {
+        this.$router.push({ name: "MyAccount" });
+      }
+    },
+    goToMyOrders() {
+      if (this.$router.currentRoute.path != "/meusPedidos") {
+        this.$router.push({ name: "MyOrders" });
+      }
+    },
+    insertAt(array, ...elementsArray) {
+      array.splice(0, 0, ...elementsArray);
+    },
   },
   computed: {
     ...mapGetters({
@@ -85,14 +96,21 @@ export default {
   },
   mounted() {
     if (this.isAdmin && !this.isPageAdmin()) {
-      this.menuItems.splice(
-        0,
-        0,
-        {
-          title: "Painel administrativo",
-          icon: "fas fa-sign-out-alt",
-          action: this.goToPanel,
-        },
+      this.insertAt(this.menuItems, {
+        title: "Painel administrativo",
+        icon: "fas fa-sign-out-alt",
+        action: this.goToPanel,
+      });
+    } else if (this.isPageAdmin()) {
+      this.insertAt(this.menuItems, {
+        title: "Ir para a loja",
+        icon: "fas fa-basket",
+        action: this.goToStore,
+      });
+    }
+    if (!this.isPageAdmin()) {
+      this.insertAt(
+        this.menuItems,
         {
           title: "Minha conta",
           icon: "fas fa-user",
@@ -104,12 +122,6 @@ export default {
           action: this.goToMyOrders,
         }
       );
-    } else if (this.isPageAdmin()) {
-      this.menuItems.splice(0, 0, {
-        title: "Ir para a loja",
-        icon: "fas fa-basket",
-        action: this.goToStore,
-      });
     }
   },
 };
