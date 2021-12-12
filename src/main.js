@@ -6,7 +6,7 @@ import store from "./store";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://intranet.sotech.xyz:5065/";
+axios.defaults.baseURL = "http://localhost:8080/";
 
 axios.interceptors.response.use(undefined, function(error) {
   if (error) {

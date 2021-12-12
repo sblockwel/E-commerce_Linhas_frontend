@@ -59,7 +59,19 @@ const actions = {
   },
 
   async GetUsers(){
-    let response = await axios.get("/clients")
+    let response = await axios.get("/clients?type=A")
+    console.log(response)
+    if (response == null || response.status == 404) {
+      return [] 
+    }
+    else if(response.status != 200){
+      throw new Error('Ocorreu um erro na API');      
+    }
+    return response.data
+  },
+
+  async GetClients(){
+    let response = await axios.get("/clients?type=C")
     console.log(response)
     if (response == null || response.status == 404) {
       return [] 

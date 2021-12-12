@@ -4,37 +4,24 @@
       :headers="headers"
       :items="orders"
       :items-per-page="5"
-      class="elevation-1">
+      class="elevation-1"
+    >
       <template v-slot:item.actions="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        @click="finalizeOrder(item)"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        small
-        @click="cancelOrder(item)"
-      >
-        mdi-delete
-      </v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn
-        color="primary"
-        @click="initialize"
-      >
-        Reset
-      </v-btn>
-    </template>
+        <v-icon small class="mr-2" @click="finalizeOrder(item)">
+          fas fa-check
+        </v-icon>
+        <v-icon small @click="cancelOrder(item)"> fas fa-times </v-icon>
+      </template>
+      <template v-slot:no-data>
+        <v-btn color="primary" @click="initialize"> Atualizar lista </v-btn>
+      </template>
     </v-data-table>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import { OrderFinished, OrderCancelled } from "../../classes/order_status.js"
+import { OrderFinished, OrderCancelled } from "../../classes/order_status.js";
 
 export default {
   name: "OrderList",
@@ -61,51 +48,30 @@ export default {
           align: "start",
           value: "status",
         },
-        { text: 'Ações', value: 'actions', sortable: false }
+        { text: "Ações", value: "actions", sortable: false },
       ],
       orders: [
-        {
-          orderNumber: "Frozen Yogurt",
-          creationDate: 15.25,
-          client: {
-            name: "sabrina"
-          },
-          status: "Pendente",
-        },
-        {
-          orderNumber: "Frozen Yogurt",
-          creationDate: 15.25,
-          client: {
-            name: "sabrina"
-          },
-          status: "Pendente",
-        },
-        {
-          orderNumber: "Frozen Yogurt",
-          creationDate: 15.25,
-          client: {
-            name: "sabrina"
-          },
-          status: "Pendente",
-        },
+      
       ],
     };
   },
-  methods:{
-    ...mapActions(["SetOrderStatus"]),
-    async finalizeOrder(order){
-        await this.SetOrderStatus(order.id, OrderFinished)
-      },
-      async cancelOrder(order){
-        await this.SetOrderStatus(order.id, OrderCancelled)
-      }
+  methods: {
+    ...mapActions(["SetOrderStatus", "GetOrders"]),
+    async finalizeOrder(order) {
+      await this.SetOrderStatus(order.id, OrderFinished);
+    },
+    async cancelOrder(order) {
+      await this.SetOrderStatus(order.id, OrderCancelled);
+    },
+    async initialize(){
+      this.orders = await this.GetOrders();
+    }
   },
   async mounted() {
-     // this.orders = await this.GetOrders();
+    await this.initialize()
   },
 };
 </script>
 
 <style>
-
 </style>

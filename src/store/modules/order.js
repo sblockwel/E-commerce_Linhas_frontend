@@ -9,7 +9,7 @@ const getters = {
 const actions = {
   async GetOrders() {
     try {
-      let response = await axios.get("orders/pending")
+      let response = await axios.get("orders")
       if (response == null || response.status == 404) {
         return []
       }

@@ -10,7 +10,7 @@
         lazy-validation
         @submit.prevent="submit"
       >
-        <v-select v-model="form" :items="users" label="Usuário" dense></v-select>
+        <v-select v-model="form" :items="users" item-text="name" item-value="id" label="Usuário" dense></v-select>
 
         <v-btn type="submit" color="success" class="mr-4"> Cadastrar </v-btn>
       </v-form>
@@ -22,7 +22,7 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "ProductForm",
+  name: "AdminRegister",
   components: {},
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["CreateAdmin", "GetUsers"]),
+    ...mapActions(["CreateAdmin", "GetClients"]),
     async submit() {
       try {
         if (this.form != null) {
@@ -49,7 +49,7 @@ export default {
     },
   },
   async mounted() {
-    this.users = await this.GetUsers();
+    this.users = await this.GetClients();
   },
 };
 </script>
