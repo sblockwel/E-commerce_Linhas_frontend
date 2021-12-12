@@ -1,6 +1,6 @@
 <template>
   <div v-if="isAuthenticated">
-    <v-menu bottom left>
+    <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn dark icon v-bind="attrs" v-on="on">
           <v-avatar size="36px">
@@ -17,6 +17,10 @@
           @click="item.action"
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
+          
+          <v-list-item-icon>
+              <v-icon> {{ item.icon }} </v-icon>
+          </v-list-item-icon>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -68,19 +72,38 @@ export default {
         }
       }
       return pageAdmin;
-    }
+    },
+    goToMyAccount() {},
+    goToMyOrders() {},
   },
   computed: {
-    ...mapGetters({ isAuthenticated: "isAuthenticated", isAdmin: "isAdmin", imgProfile: "ProfileImg" }),
+    ...mapGetters({
+      isAuthenticated: "isAuthenticated",
+      isAdmin: "isAdmin",
+      imgProfile: "ProfileImg",
+    }),
   },
   mounted() {
-      console.log(this.imgProfile)
     if (this.isAdmin && !this.isPageAdmin()) {
-      this.menuItems.splice(0, 0, {
-        title: "Painel gerencial",
-        icon: "fas fa-sign-out-alt",
-        action: this.goToPanel,
-      });
+      this.menuItems.splice(
+        0,
+        0,
+        {
+          title: "Painel administrativo",
+          icon: "fas fa-sign-out-alt",
+          action: this.goToPanel,
+        },
+        {
+          title: "Minha conta",
+          icon: "fas fa-user",
+          action: this.goToMyAccount,
+        },
+        {
+          title: "Meus pedidos",
+          icon: "fas fa-clipboard-list",
+          action: this.goToMyOrders,
+        }
+      );
     } else if (this.isPageAdmin()) {
       this.menuItems.splice(0, 0, {
         title: "Ir para a loja",

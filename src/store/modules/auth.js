@@ -104,7 +104,6 @@ const mutations = {
       state.isAdmin = false
     }
     if ("profile" in decoded) {
-      console.log('entrei no if')
       state.profileImg = decoded.profile
     }
     else {
