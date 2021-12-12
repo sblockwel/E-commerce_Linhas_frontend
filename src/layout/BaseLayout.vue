@@ -43,7 +43,9 @@ export default {
   }),
   methods: {
     goToHome(){
-      this.$router.push({name: "Home"})
+      if (this.$router.currentRoute.path != "/home") {
+        this.$router.push({name: "Home"})        
+      }
     }
   },
   
