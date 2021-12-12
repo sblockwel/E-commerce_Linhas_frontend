@@ -5,18 +5,18 @@
         <v-img @click="goToHome()"
           class="shrink mr-2 logo"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="../assets/LINHALE.png"
           transition="scale-transition"
-          width="40"
+          width="80"
         />
 
         <v-img @click="goToHome()"
           alt="Vuetify Name"
           class="shrink mt-1 hidden-sm-and-down logo"
           contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
+          min-width="150"
+          src="../assets/LINHALd.png"
+          width="80"
         />
       </div>
 
@@ -33,6 +33,7 @@
 <script>
 
 import LoginDisplay from '../components/LoginDisplay.vue';
+
 export default {
   components: { LoginDisplay },
   name: "BaseLayout",
