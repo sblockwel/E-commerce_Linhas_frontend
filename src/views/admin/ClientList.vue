@@ -18,7 +18,7 @@ export default {
     return {
       headers: [
         { text: "Nome", align: "start", value: "name" },
-        { text: "Nome de usuário", value: "username" },
+        { text: "Nome de usuário", value: "email" },
         { text: "Email", value: "email" },
         { text: "Documento", value: "document" },
         { text: "Telefone", value: "number" },
