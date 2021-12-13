@@ -90,7 +90,7 @@ export default {
       ],
       zipCodeRules: [
         v => !!v || 'CEP é obrigatório!',
-        v => (v && v.length >= 10) || 'CEP deve ser maior que 10 caracteres',
+        v => (v && v.length >= 8) || 'CEP deve ser maior que 10 caracteres',
       ],
       emailRules: [
         v => !!v || 'E-mail é obrigatório!',
@@ -101,8 +101,33 @@ export default {
   },
   methods: {
     ...mapActions(["Register"]),
+    formatDocument(document){
+      let doc = document.replace(/\D/g,"")
+      if (doc.length == 14){
+        doc=doc.replace(/^(\d{2})(\d)/,"$1.$2")             //Coloca ponto entre o segundo e o terceiro dígitos
+        doc=doc.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3") //Coloca ponto entre o quinto e o sexto dígitos
+        doc=doc.replace(/\.(\d{3})(\d)/,".$1/$2")           //Coloca uma barra entre o oitavo e o nono dígitos
+        doc=doc.replace(/(\d{4})(\d)/,"$1-$2")              //Coloca um hífen depois do bloco de quatro dígitos
+      } else {
+        doc=doc.replace(/(\d{3})(\d)/,"$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos
+        doc=doc.replace(/(\d{3})(\d)/,"$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos
+                                                //de novo (para o segundo bloco de números)
+        doc=doc.replace(/(\d{3})(\d{1,2})$/,"$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
+      }
+      return doc
+    },
+    formatZipcode(zip){
+      //var re = /^([\d]{2})\.*([\d]{3})-*([\d]{3})/;
+      let zipcode = zip.replace(/\D/g,"")
+      zipcode=zipcode.replace(/^(d{5})(d)/,"$1-$2") 
+      //zipcode.replace(re, "$1.$2-$3")
+      return zipcode
+    },
     async submit() {
       try {
+        this.form.zipCode = this.formatZipcode(this.form.zipCode);
+        this.form.document = this.formatDocument(this.form.document);
+        console.log(this.form);
         await this.Register(this.form);
         this.$router.push("/");
         this.showError = false;
