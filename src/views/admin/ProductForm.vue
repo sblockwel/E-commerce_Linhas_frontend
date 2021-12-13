@@ -38,9 +38,20 @@
           required
         ></v-text-field>
 
-        <v-select v-model="form.categoryId" :items="categories" item-text="name" item-value="id" label="Categoria" dense></v-select>
+        <v-select
+          v-model="form.categoryId"
+          :items="categories"
+          item-text="name"
+          item-value="id"
+          label="Categoria"
+          dense
+        ></v-select>
 
-        <v-file-input accept="image/*" counter label="File input"></v-file-input>
+        <v-file-input
+          accept="image/*"
+          counter
+          label="File input"
+        ></v-file-input>
 
         <v-btn color="error" class="mr-4" @click="reset"> Limpar </v-btn>
 
@@ -80,7 +91,11 @@ export default {
   methods: {
     ...mapActions(["CreateProduct", "GetCategories"]),
     async submit() {
+      console.log(this.form)
       try {
+        if (this.form.categoryId == null || this.form.categoryId == ""){
+          throw new Error("Categoria não foi selecionada!")
+        }
         await this.CreateProduct(this.form);
         this.showError = false;
       } catch (error) {

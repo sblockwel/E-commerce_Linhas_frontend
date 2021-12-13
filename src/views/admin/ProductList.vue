@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "ProductList",
   data() {
@@ -23,7 +24,7 @@ export default {
         { text: "Preço", value: "price" },
         { text: "Quantidade em estoque", value: "quantity" },
         { text: "Descrição", value: "description" },
-        { text: "Categoria", value: "category" },
+        { text: "Categoria", value: "category.name" },
       ],
       products: [
         {
@@ -72,7 +73,7 @@ export default {
     };
   },
   methods: {
-      
+      ...mapActions(["GetProducts"]),
   },
   async mounted() {
     this.products = await this.GetProducts();

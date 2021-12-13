@@ -7,18 +7,19 @@ const getters = {
 };
 
 const actions = {
-  async CreateProduct(form) {
+  async CreateProduct({state}, form) {
     for (const key in form) {
       let value = form[key]
       if (value == "") {
         throw new Error(`Um dos campos está vazio, verifique!`)        
       }
     }
+    console.debug(state)
     await axios.post('product', form)
   },
 
   async GetProducts() {
-    let response = await axios.get("products")
+    let response = await axios.get("product")
     if (response.status == 404) {
       return [] 
     }
@@ -28,7 +29,7 @@ const actions = {
     return response.data
   },
 
-  async CreateCategory({state},form) {
+  async CreateCategory({state}, form) {
     for (const key in form) {
       let value = form[key]
       if (value == "") {
