@@ -40,7 +40,7 @@ export default {
         if (this.form != null) {
            return  
         }
-        await this.CreateAdmin(this.form.id)
+        await this.CreateAdmin(this.form.email)
         this.showError = false;
       } catch (error) {
         this.showError = true;

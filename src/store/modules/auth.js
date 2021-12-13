@@ -54,8 +54,8 @@ const actions = {
     await commit("logout");
   },
 
-  async CreateAdmin({ commit }, userId) {
-    let response = await axios.post("/admin/" + userId)
+  async CreateAdmin({ commit }, userEmail) {
+    let response = await axios.post("/account/admin/" + userEmail)
     if (response == null || response.status != 200) {
       throw new Error('Ocorreu um erro na API');
     }
