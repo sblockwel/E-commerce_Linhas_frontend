@@ -2,7 +2,7 @@
   <div>
     <v-data-table
       :headers="headers"
-      :items="admin"
+      :items="admins"
       :items-per-page="5"
       class="elevation-1"
     ></v-data-table>
@@ -24,14 +24,14 @@ export default {
         { text: "Telefone", value: "number" },
         { text: "Tipo", value: "type" },
       ],
-      admin: [],
+      admins: [],
     };
   },
   methods: {
     ...mapActions(["GetUsers"]),
   },
   async mounted() {
-    this.clients = await this.GetUsers();
+    this.admins = await this.GetUsers();
   },
 };
 </script>
