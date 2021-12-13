@@ -7,11 +7,12 @@ const getters = {
 };
 
 const actions = {
-  async GetOrders(user) {
+  async GetOrders({state}, user) {
     try {
-      let endPoint = "orders"
+      console.debug(state)
+      let endPoint = "order"
       if (user != null && user != "") {
-        endPoint = "orders?user=" + user
+        endPoint = "order?user=" + user
       }
       let response = await axios.get(endPoint)
       if (response == null || response.status == 404) {

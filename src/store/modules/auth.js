@@ -74,7 +74,7 @@ const actions = {
   },
 
   async GetClients() {
-    let response = await axios.get("/clients?type=C")
+    let response = await axios.get("/clients")
     if (response == null || response.status == 404) {
       return []
     }
