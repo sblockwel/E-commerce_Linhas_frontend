@@ -8,6 +8,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = Vue.config.devtools ? "http://localhost:8080" : "https://e-commerce-front.herokuapp.com";
+axios.defaults.headers.post['Content-Type'] = "application/json";
 
 axios.interceptors.response.use(undefined, function(error) {
   if (error) {
