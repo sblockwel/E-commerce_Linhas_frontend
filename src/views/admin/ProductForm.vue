@@ -38,7 +38,7 @@
           required
         ></v-text-field>
 
-        <v-select :items="categories" label="Categoria" dense></v-select>
+        <v-select v-model="form.categoryId" :items="categories" item-text="name" item-value="id" label="Categoria" dense></v-select>
 
         <v-file-input accept="image/*" counter label="File input"></v-file-input>
 
@@ -65,7 +65,7 @@ export default {
         price: "",
         quantity: "",
         description: "",
-        category: "",
+        categoryId: "",
       },
       show: false,
       showError: false,
