@@ -4,16 +4,8 @@
       {{ erro }}
     </v-alert>
     <div class="center">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-        @submit.prevent="submit"
-      >
-        <v-select v-model="form" :items="users" item-text="name" item-value="id" label="Usuário" dense></v-select>
-
-        <v-btn type="submit" color="success" class="mr-4"> Cadastrar </v-btn>
-      </v-form>
+        <v-select v-model="clientEmail" :items="users" item-text="name" item-value="email" label="Usuário" dense></v-select>
+        <v-btn @click="submit" color="success" class="mr-4"> Cadastrar </v-btn>
     </div>
   </div>
 </template>
@@ -27,8 +19,7 @@ export default {
   data() {
     return {
       users: [],      
-      form: {        
-      },
+      clientEmail: 0,
       showError: false,
       valid: true,
     };
@@ -37,7 +28,7 @@ export default {
     ...mapActions(["CreateAdmin", "GetClients"]),
     async submit() {
       try {
-        if (this.form != null) {
+        if (this.clientEmail == null) {
            return  
         }
         await this.CreateAdmin(this.form.email)
