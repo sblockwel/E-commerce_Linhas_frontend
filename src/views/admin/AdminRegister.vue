@@ -31,7 +31,7 @@ export default {
         if (this.clientEmail == null) {
            return  
         }
-        await this.CreateAdmin(this.form.email)
+        await this.CreateAdmin(this.clientEmail)
         this.showError = false;
       } catch (error) {
         this.showError = true;
