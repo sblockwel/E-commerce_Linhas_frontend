@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://e-commerce-linhas.herokuapp.com";
+axios.defaults.baseURL = Vue.config.devtools ? "http://localhost:8080" : "https://e-commerce-front.herokuapp.com";
 
 axios.interceptors.response.use(undefined, function(error) {
   if (error) {
