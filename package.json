@@ -21,7 +21,7 @@
     "vuex-persistedstate": "^4.1.0"
   },
     "optionalDependencies": {
-      "fsevents": "2.1.2"
+      "fsevents": "2.3.2"
     },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
