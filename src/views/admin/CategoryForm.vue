@@ -18,14 +18,13 @@
 </template>
 
 <script>
-import axios from "axios"
+import { mapActions } from "vuex";
 export default {
   name: "CategoryForm",
   components: {},
   data() {
     return {
       form: {
-          id: 0,
         name: "",
       },
       showError: false,
@@ -37,10 +36,10 @@ export default {
     };
   },
   methods: {
-    
+    ...mapActions(["CreateCategory"]),
     async submit() {
       try {
-        await axios.post('products/category', this.form);
+        await this.CreateCategory(this.form);
         this.showError = false;
       } catch (error) {
         this.showError = true;

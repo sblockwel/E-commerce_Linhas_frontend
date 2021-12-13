@@ -7,9 +7,13 @@ const getters = {
 };
 
 const actions = {
-  async GetOrders() {
+  async GetOrders(user) {
     try {
-      let response = await axios.get("orders")
+      let endPoint = "orders"
+      if (user != null && user != "") {
+        endPoint = "orders?user=" + user
+      }
+      let response = await axios.get(endPoint)
       if (response == null || response.status == 404) {
         return []
       }
@@ -32,7 +36,7 @@ const actions = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 };
 
 const mutations = {

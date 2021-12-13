@@ -6,7 +6,7 @@
     <div>
       <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="submit">
 
-        <v-text-field v-model="form.username" :counter="10" :rules="usernameRules" label="Nome de usuário" required ></v-text-field>
+        <v-text-field v-model="form.email" :rules="emailRules" label="Email" required ></v-text-field>
 
         <v-text-field v-model="form.password"
           :append-icon="show ? 'fas fa-eye' : 'fas fa-eye-slash'"
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       form: {
-        username: "",
+        email: "",
         password: "",
       },      
       show: false,
@@ -44,9 +44,9 @@ export default {
         required: value => !!value || 'Senha é obrigatória!',
         min: v => v.length >= 8 || 'Minimo 8 caracteres',
       },
-      usernameRules: [
-        v => !!v || 'Usuário é obrigatório!',
-        v => (v && v.length <= 15) || 'O nome de usuário deve ter menos de 15 caracteres',
+      emailRules: [
+        v => !!v || 'E-mail é obrigatório!',
+        v => /.+@.+\..+/.test(v) || 'E-mail inválido!',
       ],
       erro: "",
     };

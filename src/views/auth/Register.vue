@@ -14,6 +14,8 @@
 
         <v-text-field v-model="form.document" :rules="documentRules" label="CPF ou CNPJ" required ></v-text-field>
 
+        <v-text-field v-model="form.zipCode" :rules="zipCodeRules" label="CEP" required ></v-text-field>
+
         <v-text-field v-model="form.password"
           :append-icon="show ? 'fas fa-eye' : 'fas fa-eye-slash'"
           :rules="[passwordRules.required, passwordRules.min]"
@@ -61,6 +63,7 @@ export default {
         email: "",
         document: "",
         confirmPassword: "",
+        zipCode: ""
       },
       show: false,
       showc: false,
@@ -84,6 +87,10 @@ export default {
       documentRules: [
         v => !!v || 'Documento é obrigatório!',
         v => (v && v.length >= 11) || 'Documento deve ser maior que 11 caracteres',
+      ],
+      zipCodeRules: [
+        v => !!v || 'CEP é obrigatório!',
+        v => (v && v.length >= 10) || 'CEP deve ser maior que 10 caracteres',
       ],
       emailRules: [
         v => !!v || 'E-mail é obrigatório!',

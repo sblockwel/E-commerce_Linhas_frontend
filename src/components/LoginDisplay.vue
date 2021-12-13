@@ -95,19 +95,6 @@ export default {
     }),
   },
   mounted() {
-    if (this.isAdmin && !this.isPageAdmin()) {
-      this.insertAt(this.menuItems, {
-        title: "Painel administrativo",
-        icon: "fas fa-sign-out-alt",
-        action: this.goToPanel,
-      });
-    } else if (this.isPageAdmin()) {
-      this.insertAt(this.menuItems, {
-        title: "Ir para a loja",
-        icon: "fas fa-basket",
-        action: this.goToStore,
-      });
-    }
     if (!this.isPageAdmin()) {
       this.insertAt(
         this.menuItems,
@@ -123,6 +110,20 @@ export default {
         }
       );
     }
+    if (this.isAdmin && !this.isPageAdmin()) {
+      this.insertAt(this.menuItems, {
+        title: "Painel administrativo",
+        icon: "fas  fa-users-cog",
+        action: this.goToPanel,
+      });
+    } else if (this.isPageAdmin()) {
+      this.insertAt(this.menuItems, {
+        title: "Ir para a loja",
+        icon: "fas fa-basket",
+        action: this.goToStore,
+      });
+    }
+    
   },
 };
 </script>

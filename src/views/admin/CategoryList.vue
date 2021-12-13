@@ -1,20 +1,20 @@
 <template>
   <div>
     <div>
-      <v-btn  href="category" text> Cadastrar Novo </v-btn>
+      <v-btn href="category" text> Cadastrar Novo </v-btn>
     </div>
-    
+
     <v-data-table
       :headers="headers"
       :items="categories"
       :items-per-page="5"
       class="elevation-1"
     ></v-data-table>
-    
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "CategoryList",
   data() {
@@ -39,11 +39,11 @@ export default {
       ],
     };
   },
-  methods:{
-
+  methods: {
+    ...mapActions(["GetCategories"]),
   },
   async mounted() {
-      this.categories = await this.GetCategories();
+    this.categories = await this.GetCategories();
   },
 };
 </script>

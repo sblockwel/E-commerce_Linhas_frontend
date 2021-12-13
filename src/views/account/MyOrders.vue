@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "OrderList",
@@ -45,12 +45,15 @@ export default {
   methods: {
     ...mapActions(["GetOrders"]),
     async initialize() {
-      this.orders = await this.GetOrders();
+      this.orders = await this.GetOrders(this.user);
     },
   },
   async mounted() {
     await this.initialize();
   },
+  computed: {
+    ...mapGetters({ user: "StateUser",}),
+  }
 };
 </script>
 

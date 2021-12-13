@@ -28,18 +28,19 @@ const actions = {
     return response.data
   },
 
-  async CreateCategory( form) {
+  async CreateCategory({state},form) {
     for (const key in form) {
       let value = form[key]
       if (value == "") {
         throw new Error(`Um dos campos está vazio, verifique!`)        
       }
     }
-    await axios.post('products/category', form)   
+    console.debug(state)
+    await axios.post('productCategory', form)   
   },
 
   async GetCategories() {
-    let response = await axios.get("products/categories")
+    let response = await axios.get("productCategory")
     if (response == null || response.status == 404) {
       return [] 
     }
