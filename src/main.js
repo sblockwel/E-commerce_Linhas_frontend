@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "https://e-commerce-linhas.herokuapp.com";
 
 axios.interceptors.response.use(undefined, function(error) {
   if (error) {
